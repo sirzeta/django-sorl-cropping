@@ -42,12 +42,13 @@ def get_attrs(image, name):
 class CropWidget(object):
         
     def _media(self):
-        css = {'all': ("image_cropping/css/jquery.Jcrop.min.css",)}
+        css = {'all': (static("image_cropping/css/jquery.Jcrop.min.css"),)}
         js = (
             "image_cropping/js/jquery.Jcrop.min.js",
             "image_cropping/image_cropping.js",
         )
-        return forms.Media(js=[static(url) for url in js], css=css)
+        return forms.Media(js=[static('admin/js/%s' % url) for url in js] + [getattr(settings, 'JQUERY_URL',
+                'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')], css=css)
     media = property(_media)
 
 
