@@ -2,6 +2,7 @@ import logging
 import inspect
 import warnings
 
+from django.contrib.admin.templatetags.admin_static import static
 from django.db.models import ObjectDoesNotExist
 from django.contrib.admin.widgets import AdminFileWidget, ForeignKeyRawIdWidget
 from django.conf import settings
@@ -39,13 +40,18 @@ def get_attrs(image, name):
 
 class CropWidget(object):
     class Media:
+        js = 
+        
+    def _media(self):
+        css = {'all': ("image_cropping/css/jquery.Jcrop.min.css",)}
         js = (
-            getattr(settings, 'JQUERY_URL',
-                    'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'),
+        getattr(settings, 'JQUERY_URL',
+                'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'),
             "image_cropping/js/jquery.Jcrop.min.js",
             "image_cropping/image_cropping.js",
         )
-        css = {'all': ("image_cropping/css/jquery.Jcrop.min.css",)}
+        return forms.Media(js=[static('admin/js/%s' % url) for url in js], css=css)
+    media = property(_media)
 
 
 class ImageCropWidget(AdminFileWidget, CropWidget):
