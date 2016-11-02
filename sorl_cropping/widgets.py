@@ -44,8 +44,6 @@ class CropWidget(object):
     def _media(self):
         css = {'all': ("image_cropping/css/jquery.Jcrop.min.css",)}
         js = (
-        getattr(settings, 'JQUERY_URL',
-                'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'),
             "image_cropping/js/jquery.Jcrop.min.js",
             "image_cropping/image_cropping.js",
         )
