@@ -2,6 +2,7 @@ import logging
 import inspect
 import warnings
 
+from django import forms
 from django.contrib.admin.templatetags.admin_static import static
 from django.db.models import ObjectDoesNotExist
 from django.contrib.admin.widgets import AdminFileWidget, ForeignKeyRawIdWidget
