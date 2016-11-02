@@ -49,7 +49,7 @@ class CropWidget(object):
             "image_cropping/js/jquery.Jcrop.min.js",
             "image_cropping/image_cropping.js",
         )
-        return forms.Media(js=[static('admin/js/%s' % url) for url in js], css=css)
+        return forms.Media(js=[static(url) for url in js], css=css)
     media = property(_media)
 
 
